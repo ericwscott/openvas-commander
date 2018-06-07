@@ -48,7 +48,7 @@ function get_source_set()
 {
     local release_name="$1"
     col=`get_available_source_sets | awk -v name="$release_name" '{ if ( $0 == name ){print NR}}'`
-    echo "$openvas_source_table" | awk -F"|" -v col="$col" '{ if ( NR != 1 && $1 != "" && $col != "" ){print $col}}'
+    echo "$openvas_source_table" | awk -F"|" -v col="$col" '{ if ( NR != 1 && $1 != "" && $col != "" ){print $col}}' | sed -E -e 's/[[:blank:]]+/\n/g' | grep -v .tar.gz.sig
 }
 
 function download_source_set()
