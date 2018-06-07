@@ -16,6 +16,12 @@ function configure_redis()
     fi
 }
 
+function configure_openvassd()
+{
+    touch /usr/local/etc/openvas/openvassd.conf
+    echo "kb_location = /var/run/redis/redis.sock" >> /usr/local/etc/openvas/openvassd.conf
+}
+
 function get_openvas_source_table()
 {
     curl -s http://openvas.org/install-source.html | sed -e ':a;N;$!ba;s/\n/ /g' -e 's/.*<table class="dl_table"//' -e 's/<\/table>.*//' -e 's/<tr>/\n<tr>/g' | grep "<tr>" | grep -v "bgcolor"  | sed  -e 's/[ \t]*<\/t[dh]>[ \t]*/|/g' -e 's/"[ \t]*>[^<]*<\/a>//g' -e 's/<a href="//g' -e 's/[ \t]*<[/]*t[rdh]>[ \t]*//g' -e 's/|$//' | grep -v "Supports OMP "
@@ -194,6 +200,7 @@ then
     mkdir /usr/local/var/lib/openvas/openvasmd/
     mkdir /usr/local/var/lib/openvas/openvasmd/gnupg
     configure_redis
+    configure_openvassd
     mkcerts
     ldconfig
     openvasmd --create-user=admin --role=Admin && openvasmd --user=admin --new-password=1
