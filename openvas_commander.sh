@@ -71,7 +71,7 @@ function install_component()
 {
     local component="$1"
     cd openvas
-    cd $component-* 
+    cd $component-[0,1,2,3,4,5,6,7,8,9]*
     mkdir build 
     cd build 
     cmake .. 
