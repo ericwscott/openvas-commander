@@ -64,6 +64,7 @@ function create_folders()
     cd openvas/
     find | grep ".tar.gz$" | xargs -i tar zxvfp '{}'
     cd ../
+    find . -name "*.gz" | xargs echo rm | sh
 }
 
 function install_component()
