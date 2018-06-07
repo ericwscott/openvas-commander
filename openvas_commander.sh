@@ -177,19 +177,19 @@ then
 elif [ "$1" == "--uninstall-all" ]
 then
     dpkg -r "openvas-smb"
-    dpkg -r "openvas-libraries"
+    dpkg -r "gvm-libs"
     dpkg -r "openvas-scanner"
-    dpkg -r "openvas-manager"
+    dpkg -r "gvm"
     dpkg -r "openvas-cli"
-    dpkg -r "greenbone-security-assistant"
+    dpkg -r "gsa"
 elif  [ "$1" == "--install-all" ]
 then
     install_component "openvas-smb"
-    install_component "openvas-libraries"
+    install_component "gvm-libs"
     install_component "openvas-scanner"
-    install_component "openvas-manager"
+    install_component "gvm"
     install_component "openvas-cli"
-    install_component "greenbone-security-assistant"
+    install_component "gsa"
 elif [ "$1" == "--install-component" ]
 then
     install_component "$2"
