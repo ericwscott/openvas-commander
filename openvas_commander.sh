@@ -198,6 +198,7 @@ then
     dpkg -r "$2"
 elif [ "$1" == "--configure-all" ]
 then
+    mkdir /usr/local/var/lib/openvas/
     mkdir /usr/local/var/lib/openvas/openvasmd/
     mkdir /usr/local/var/lib/openvas/openvasmd/gnupg
     configure_redis
