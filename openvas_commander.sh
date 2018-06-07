@@ -9,7 +9,9 @@ function configure_redis()
 {
     if [ ! -f /etc/redis/redis.orig ]; then
         cp /etc/redis/redis.conf /etc/redis/redis.orig
-        echo "unixsocket /tmp/redis.sock" >> /etc/redis/redis.conf
+        sed -i -e 's/port 6379/port 0/g' /etc/redis/redis.conf
+        echo "unixsocket /var/run/redis/redis.sock" >> /etc/redis/redis.conf
+        echo "unixsocketperm 755" >> /etc/redis/redis.conf
         service redis-server restart        
     fi
 }
